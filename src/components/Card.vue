@@ -5,7 +5,7 @@
       <p class="card-text">
         {{ post.body }}
       </p>
-      <p class="text-muted">Author</p>
+      <p class="text-muted">{{post.userName}}</p>
     </div>
   </div>
 </template>
