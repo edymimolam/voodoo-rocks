@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import axios from "axios";
+  import { server } from "./api";
   import Header from "./components/Header";
   import Card from "./components/Card";
   export default {
@@ -27,10 +27,6 @@
       },
     },
     mounted() {
-      const server = axios.create({
-        baseURL: "http://jsonplaceholder.typicode.com/",
-      });
-
       const init = async () => {
         try {
           this.isLoading = true;
