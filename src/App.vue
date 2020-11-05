@@ -1,7 +1,7 @@
 <template>
-  <Header />
+  <Header @search="inputValue => (searchQuery = inputValue)" />
   <div class="card-columns">
-    <Card v-for="post of posts" :key="post.id" :post="post" />
+    <Card v-for="post of searchResults" :key="post.id" :post="post" />
   </div>
 </template>
 
@@ -13,9 +13,18 @@
     name: "App",
     data: function() {
       return {
+        searchQuery: "",
         posts: [],
         isLoading: false,
       };
+    },
+    computed: {
+      searchResults() {
+        if (!this.searchQuery) return this.posts;
+        return this.posts.filter(({ userName }) =>
+          userName.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      },
     },
     mounted() {
       const server = axios.create({

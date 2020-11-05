@@ -11,6 +11,8 @@
           placeholder="Username"
           aria-label="Username"
           aria-describedby="basic-addon1"
+          @input="onInputChange"
+          v-model="inputValue"
         />
       </div>
     </form>
@@ -18,7 +20,18 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    data: function() {
+      return {
+        inputValue: "",
+      };
+    },
+    methods: {
+      onInputChange() {
+        this.$emit("search", this.inputValue);
+      },
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
